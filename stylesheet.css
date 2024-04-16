@@ -243,3 +243,60 @@ a.button-website {
 .project-image {
   border:solid 1px gray;
 }
+
+/*--added after this--*/
+
+/* Navigation styling */
+nav {
+  background-color: #f8f8f8; /* Light grey background */
+  border: 1px solid #e7e7e7;
+  text-align: center; /* Center align the navigation links */
+  padding: 10px 0; /* Padding above and below the links */
+}
+
+nav ul {
+  list-style-type: none; /* Remove bullet points */
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline; /* Display list items in a row */
+  margin-right: 20px; /* Space between the links */
+}
+
+nav ul li a {
+  text-decoration: none; /* Remove underline from links */
+  color: #333; /* Dark grey text color */
+  font-weight: bold;
+  padding: 10px 20px; /* Padding around the text */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+nav ul li a:hover {
+  background-color: #ddd; /* Light grey background on hover */
+  border-radius: 5px; /* Rounded corners on hover */
+}
+
+.nav-container {
+  position: fixed; /* Fix the navigation bar's position */
+  top: 0;          /* Align it at the top of the viewport */
+  width: 100%;     /* Make it span the full width of the viewport */
+  z-index: 1000;   /* Ensure it stays on top of other content */
+}
+
+body {
+  padding-top: 70px; /* Adjust this to match your navbar's height */
+}
+
+#home, #projects, #research, #others {
+  margin-top: -80px; /* Pulls the section up under the navbar exactly */
+}
+
+
+.horizontal-line {
+  height: 1px; /* Line thickness */
+  background-color: #cccccc; /* Line color */
+  width: 100%; /* Line width */
+  margin: 20px 0; /* Adds vertical space above and below the line */
+}
