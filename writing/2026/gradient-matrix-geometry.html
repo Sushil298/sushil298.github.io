@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Matrix Geometry of Gradient Descent | Sushil Bohara</title>
+    <meta name="description" content="Why singular values, norms, and condition numbers matter in machine learning optimization, even when SGD never explicitly multiplies the gradient by a vector.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../style.css">
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+    <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GEWRT4FSM8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GEWRT4FSM8');
+  </script>
+</head>
+  <body>
+
+    <div class="topouter">
+      <div class="top">
+        <div class="links">
+          <nav>
+            <a href="../../">Home</a>
+            <a href="../../#papers">Papers</a>
+            <a href="../../writing/">Appendix</a>
+          </nav>
+        </div>
+        <div class="title">Sushil Bohara</div>
+        <div style="clear:both"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="outer">
+        <div class="boxed">
+          <div class="inner">
+
+            <div class="post-header">
+              <h1>Matrix Geometry of Gradient Descent</h1>
+              <div class="post-meta">April 2026</div>
+            </div>
+
+            <div class="post-body fancy">
+
+              <p>
+                The story of weight updates in gradient descent is simple.
+                We define a loss function, compute its gradient, and then move in the negative gradient direction.
+                Each parameter has a derivative, so each parameter gets updated.
+                This picture is useful, but it also leaves important question. 
+              </p>
+
+              <p>The questions we can ask sound like this:</p>
+
+              <blockquote>
+                If the gradient already tells us how every parameter changes, then why we need to talk about matrix norms, singular values, and condition numbers? Which matrix should we study studying?
+                The weights? The loss? The input? And if, during SGD, eventhough we do not multiply the
+                gradient matrix by some arbitrary vector, then why do we care things like
+                "this matrix acts strongly in some directions and weakly in others"?
+              </blockquote>
+
+              <p>These are exactly the right questions to ask.</p>
+
+              <p>
+                The key is that there are two different things happening at once. The first is the actual
+                optimization step, where we subtract the gradient. The second is the mathematical analysis
+                of the <em>structure</em> of that gradient. SGD uses the gradient as an update object.
+                Linear algebra helps us understand what kind of update object it really is.
+              </p>
+
+              <p>This post is a slow, bottom-up story to connect those two views clearly.</p>
+
+              <hr>
+
+              <h2>A tiny one-layer neural network</h2>
+
+              <p>Let us start with the smallest neural network where the gradient is naturally a matrix.</p>
+
+              <p>Take an input vector</p>
+
+              \[
+                x =
+                \begin{bmatrix}
+                x_1 \\
+                x_2
+                \end{bmatrix}
+              \]
+
+              <p>and let a one-layer linear network produce a two-dimensional output using a weight matrix</p>
+
+              \[
+                W =
+                \begin{bmatrix}
+                w_{11} & w_{12} \\
+                w_{21} & w_{22}
+                \end{bmatrix}.
+              \]
+
+              <p>The network computes \( \hat y = Wx \). Suppose the target output is</p>
+
+              \[
+                y =
+                \begin{bmatrix}
+                y_1 \\
+                y_2
+                \end{bmatrix}
+              \]
+
+              <p>and we use squared error loss</p>
+
+              \[
+                L(W) = \frac12 \|Wx - y\|_2^2.
+              \]
+
+              <p>Now everything is clear: \(x\) is the input, \(y\) is the target, \(W\) is the parameter matrix,
+              and \(L(W)\) is a scalar function of that matrix. So the gradient with respect to \(W\) has the same
+              shape as \(W\) — it is also a matrix.</p>
+
+              <p>The matrix we are studying is usually the layer weight matrix \(W\), and especially the gradient of the loss with respect to it, \(\nabla_W L\).</p>
+
+              <hr>
+
+              <h2>A concrete numerical example</h2>
+
+              <p>Take</p>
+
+              \[
+                x =
+                \begin{bmatrix} 1 \\ 2 \end{bmatrix},
+                \qquad
+                y =
+                \begin{bmatrix} 3 \\ 1 \end{bmatrix},
+                \qquad
+                W =
+                \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}.
+              \]
+
+              <p>The prediction is \( \hat y = Wx = \begin{bmatrix}1\\2\end{bmatrix} \), giving error
+              \( e = \hat y - y = \begin{bmatrix}-2\\1\end{bmatrix} \) and loss
+              \( L(W) = \tfrac{1}{2}(4+1) = \tfrac{5}{2} \).</p>
+
+              <p>For this squared loss, the gradient is</p>
+
+              \[
+                \nabla_W L = (\hat y - y)x^\top = ex^\top =
+                \begin{bmatrix}-2\\1\end{bmatrix}
+                \begin{bmatrix}1 & 2\end{bmatrix}
+                =
+                \begin{bmatrix}-2 & -4\\1 & 2\end{bmatrix}.
+              \]
+
+              <p>Let us call this gradient matrix \(G\). This is the object that SGD uses.</p>
+
+              <hr>
+
+              <h2>What SGD does with this matrix</h2>
+
+              <p>Plain SGD updates the weights by subtracting a scaled copy of the gradient:</p>
+
+              \[
+                W_{\text{new}} = W - \eta G.
+              \]
+
+              <p>So if \(\eta = 0.1\),</p>
+
+              \[
+                W_{\text{new}} =
+                \begin{bmatrix}1&0\\0&1\end{bmatrix}
+                - 0.1
+                \begin{bmatrix}-2&-4\\1&2\end{bmatrix}
+                =
+                \begin{bmatrix}1.2&0.4\\-0.1&0.8\end{bmatrix}.
+              \]
+
+              <p>At this point, a natural thought appears:</p>
+
+              <blockquote>
+                We can already see the entries of the gradient. They tell me exactly how each parameter changes.
+                So why do we need anything more?
+              </blockquote>
+
+              <p>That is the heart of this blog, and it is the right place to slow down.</p>
+
+              <hr>
+
+              <h2>What the entries tell us — and what they don't</h2>
+
+              <p>The entries of \(G\) tell us that \(w_{11}\) moves by \(-2\), \(w_{12}\) by \(-4\), and so on.
+              That view is completely correct. But a matrix is not just a box of numbers — it can contain
+              <em>structure</em>. Its entries may be highly dependent on one another. The whole matrix may
+              really represent just one dominant pattern of change, or two balanced patterns, or one strong
+              pattern plus many weak ones.</p>
+
+              <p>Notice that in our example \( G = ex^\top \) is an outer product of two vectors — a rank-1 matrix.
+              The second row is \(-\tfrac12\) times the first. The second column is \(2\) times the first.
+              Four entries, but only one true mode of variation.</p>
+
+              <p>The entries answer: <em>how does each parameter change in this basis?</em><br>
+              The singular values answer: <em>how many true modes of variation are inside this update, and how strong are they?</em></p>
+
+              <p>Those are different questions.</p>
+
+              <hr>
+
+              <h2>A question we need to answer: "But SGD never computes \(Gv\)"</h2>
+
+              <p>
+                People often hear that to understand a matrix we study how it acts on vectors — what happens to
+                \(Gv\) for different directions \(v\). Then they object:
+              </p>
+
+              <blockquote>
+                But in SGD we never take some vector \(v\) and multiply it by the gradient matrix.
+                We just scale the whole matrix by the learning rate and subtract it.
+                So why are we talking about \(Gv\) at all?
+              </blockquote>
+
+              <p>This objection is absolutely correct. During optimization, SGD does not explicitly compute \(Gv\)
+              for arbitrary \(v\). When linear algebra talks about \(Gv\), it is <strong>not</strong> describing
+              what SGD literally does step by step. It is describing how we <em>analyze the internal geometry</em>
+              of the matrix.</p>
+
+              <hr>
+
+              <h2>Why singular values reveal something entries cannot</h2>
+
+              <p>The entries of a matrix depend on the coordinate system. If we rotate the basis, the entries change.
+              But the singular values do not. So singular values reveal something intrinsic about the update
+              that is not just an artifact of how we chose to write it down.</p>
+
+              <p>They tell us whether the update is spread across many modes, concentrated into one or two
+              dominant modes, balanced across directions, or extremely skewed. That kind of information is
+              hard to see from entries alone, especially in large matrices.</p>
+
+              <hr>
+
+              <h2>Matrix norms: different notions of size</h2>
+
+              <p>The <strong>Frobenius norm</strong> treats all entries together:</p>
+
+              \[
+                \|G\|_F = \sqrt{\sum_{i,j} G_{ij}^2}.
+              \]
+
+              <p>For our matrix, \( \|G\|_F = \sqrt{4+16+1+4} = 5 \).</p>
+
+              <p>The <strong>spectral norm</strong> is the largest singular value:</p>
+
+              \[
+                \|G\|_2 = \sigma_{\max}(G).
+              \]
+
+              <p>The Frobenius norm answers: <em>how large is the whole update overall?</em><br>
+              The spectral norm answers: <em>what is the strongest single mode hidden inside the update?</em></p>
+
+              <hr>
+
+              <h2>Condition number: how uneven is the matrix?</h2>
+
+              <p>The condition number is roughly</p>
+
+              \[
+                \kappa(G) = \frac{\sigma_{\max}(G)}{\sigma_{\min}(G)}.
+              \]
+
+              <p>If the largest and smallest singular values are close, the matrix is balanced.
+              If one is huge and another tiny, the matrix is highly skewed.</p>
+
+              <ul>
+                <li>Norms measure size.</li>
+                <li>Singular values measure mode strengths.</li>
+                <li>Condition number measures unfairness across modes.</li>
+              </ul>
+
+              <hr>
+
+              <h2>How this mathematically affects the SGD update</h2>
+
+              <p>Suppose the gradient matrix has singular value decomposition \( G = U \Sigma V^\top \). Then</p>
+
+              \[
+                \Delta W = -\eta G = -\eta U \Sigma V^\top.
+              \]
+
+              <p>Even though SGD does not explicitly inspect singular values, it <strong>inherits them exactly</strong>,
+              up to scaling by the learning rate. If \(G\) has one dominant singular value, the SGD step also
+              has one dominant singular value. If \(G\) is badly conditioned, the SGD step is badly conditioned too.</p>
+
+              <p>So singular values are not a side topic. They tell us the geometry of the update that SGD is about to make.</p>
+
+              <hr>
+
+              <h2>A concrete example where entries alone are misleading</h2>
+
+              <p>Consider these two gradient matrices:</p>
+
+              \[
+                G_1 =
+                \begin{bmatrix}1 & 1\\1 & 1\end{bmatrix}
+                \qquad\text{and}\qquad
+                G_2 =
+                \begin{bmatrix}1 & 1\\1 & -1\end{bmatrix}.
+              \]
+
+              <p>Every entry has magnitude \(1\), and both have the same Frobenius norm:
+              \( \|G_1\|_F = \|G_2\|_F = 2 \). From entries and total norm alone, they look nearly identical.</p>
+
+              <p>But their singular values tell a completely different story.</p>
+
+              <p>For \(G_1\):</p>
+              \[
+                \sigma_1 = 2,\qquad \sigma_2 = 0.
+              \]
+              <p>Rank 1. All action lives in a single dominant pattern.</p>
+
+              <p>For \(G_2\):</p>
+              \[
+                \sigma_1 = \sqrt{2},\qquad \sigma_2 = \sqrt{2}.
+              \]
+              <p>Perfectly balanced across two modes.</p>
+
+              <p>Two gradient matrices with the same entry magnitudes and the same Frobenius norm, yet representing
+              very different update geometries. SGD inherits that difference exactly.</p>
+
+              <hr>
+
+              <h2>Final takeaway</h2>
+
+              <p>The entries of the gradient matrix tell us the update in our chosen coordinates.<br>
+              The singular values tell us the intrinsic geometry of that update.</p>
+
+              <p>That is why both views matter. Norms tell us how large the update is. Singular values tell
+              us how its strength is distributed across modes. Condition number tells us how unbalanced
+              those modes are.</p>
+
+              <div class="post-nav">
+                <span>&larr; <a href="../../writing/">All writing</a></span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+
+  </body>
+</html>

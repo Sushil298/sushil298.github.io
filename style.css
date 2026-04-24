@@ -1,0 +1,272 @@
+/* ── shared site styles ── */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap');
+
+html { scroll-behavior: smooth; }
+
+body {
+    background: #FEFEFE;
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 12pt;
+    text-rendering: optimizeLegibility;
+    line-height: 145%;
+    margin: 0;
+}
+
+/* ── top nav ── */
+div.topouter {
+    width: 100%;
+    min-height: 1.5em;
+    padding: 1em 0;
+    z-index: 10;
+    background: #FFF;
+    border-bottom: 1px solid #D0D0D0;
+    box-shadow: 0 0 12px rgba(0,0,0,.1);
+    position: sticky;
+    top: 0;
+}
+
+div.top {
+    max-width: 60em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.title {
+    margin-left: .5em;
+    font-size: 150%;
+    float: left;
+    font-variant: small-caps;
+    letter-spacing: .15em;
+}
+
+div.links {
+    float: right;
+    font-size: 120%;
+    padding-right: 2em;
+    font-variant: small-caps;
+}
+
+div.links a { margin-right: .8em; }
+
+div.links nav a { font-variant: small-caps; }
+
+/* ── page container ── */
+div.container {
+    padding: 1.5em 1em 2em;
+    color: #222;
+}
+
+div.outer {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 1em;
+    max-width: 60em;
+}
+
+div.boxed {
+    border-radius: 5px;
+    background: #FFFFFF;
+    padding: 1.5em;
+    box-shadow: 0 0 12px rgba(0,0,0,.05);
+}
+
+div.inner {
+    padding-top: .5em;
+    width: 100%;
+    font-size: 12pt;
+    position: relative;
+}
+
+/* ── typography ── */
+a { text-decoration: none; color: #c0392b; }
+a:hover { color: #e74c3c; }
+
+div.fancy a { position: relative; }
+div.fancy a::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 0; left: 0;
+    background-color: #e74c3c;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+div.fancy a:hover::before { transform: scaleX(.99); }
+
+div.header {
+    border-bottom: #DDDDDD solid 2px;
+    padding-bottom: .5em;
+    padding-top: .2em;
+    line-height: 100%;
+    font-size: 2em;
+}
+
+span.header {
+    font-size: 1.5em;
+    line-height: 100%;
+}
+
+h2 { font-size: 1.5em; font-weight: normal; margin-top: 1.2em; }
+h3 { font-size: 1.15em; font-weight: bold; margin-top: 1em; }
+
+p { margin-top: 0; margin-bottom: .7em; }
+li { padding-bottom: 1em; }
+
+hr {
+    border: none;
+    border-top: 1px solid rgba(0,0,0,.2);
+    margin: .5em;
+}
+
+span.award { background: #ffb; border-radius: 3px; font-weight: bold; padding: 0 3px; }
+span.me    { font-weight: bold; }
+
+/* ── footnotes ── */
+span.footnote { position: relative; width: 0; margin-left: -.3em; }
+
+span.footnote > a:first-child {
+    vertical-align: super;
+    font-size: .7em;
+    line-height: 100%;
+    margin-left: 2px;
+}
+
+.footnote_content {
+    padding: .4em .6em;
+    background: #fff;
+    opacity: 0.97;
+    border: 1px solid #aaa;
+    display: block;
+    position: fixed;
+    bottom: 1em;
+    left: 1em;
+    right: 1em;
+    max-width: calc(100% - 2em);
+    border-radius: 4px;
+    visibility: hidden;
+    transition: visibility 0s 0.2s, opacity 0.2s;
+    opacity: 0;
+    box-shadow: 0 2px 10px 2px rgba(0,0,0,.2);
+    z-index: 100;
+    font-size: .9em;
+    line-height: 150%;
+}
+
+.footnote:hover .footnote_content {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+
+/* ── writing index ── */
+div.writing-year { margin-top: 1.8em; }
+div.writing-year-label {
+    font-size: 1.4em;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: .2em;
+    margin-bottom: .8em;
+}
+
+div.writing-entry { margin-bottom: 1em; }
+div.writing-entry a { font-size: 1.05em; }
+div.writing-entry .desc { color: #444; margin: .1em 0 0; font-size: .95em; }
+
+/* ── article / post page ── */
+div.post-header {
+    border-bottom: #DDDDDD solid 2px;
+    padding-bottom: .6em;
+    padding-top: .2em;
+    margin-bottom: 1em;
+}
+
+div.post-header h1 {
+    font-size: 1.8em;
+    font-weight: normal;
+    margin: 0 0 .2em;
+    line-height: 130%;
+}
+
+div.post-header .post-meta {
+    font-size: .9em;
+    color: #666;
+}
+
+div.post-body { font-size: 12pt; }
+div.post-body p  { margin-bottom: .8em; }
+div.post-body h2 { margin-top: 1.5em; }
+div.post-body h3 { margin-top: 1.2em; }
+
+div.post-body blockquote {
+    border-left: 3px solid #ccc;
+    margin-left: 0;
+    padding-left: 1.2em;
+    color: #555;
+    font-style: italic;
+}
+
+div.post-body pre {
+    background: #f4f4f4;
+    border-radius: 4px;
+    padding: .8em 1em;
+    overflow-x: auto;
+    font-size: .85em;
+    line-height: 150%;
+}
+
+div.post-body code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: .88em;
+    background: #f4f4f4;
+    padding: .1em .3em;
+    border-radius: 3px;
+}
+
+div.post-body pre code {
+    background: none;
+    padding: 0;
+}
+
+div.post-body img {
+    max-width: 100%;
+    border-radius: 4px;
+    display: block;
+    margin: 1em auto;
+}
+
+div.post-body figure {
+    margin: 1.5em 0;
+    text-align: center;
+}
+
+div.post-body figcaption {
+    font-size: .85em;
+    color: #666;
+    margin-top: .4em;
+}
+
+div.post-nav {
+    margin-top: 2.5em;
+    padding-top: 1em;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    font-size: .95em;
+}
+
+div.footer {
+    text-align: center;
+    padding-top: 3em;
+    font-size: 0.5em;
+}
+
+/* ── mobile ── */
+@media all and (max-width: 40em) {
+    .footnote_content { transition: 0s; }
+    div.post-nav { flex-direction: column; gap: .6em; }
+    div.title { font-size: 115%; letter-spacing: .05em; margin-right: 1em; }
+    div.links { font-size: 95%; padding-right: .6em; }
+    div.boxed { padding: .5em; }
+}

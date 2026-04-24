@@ -1,0 +1,181 @@
+<!doctype html>
+<!--
+  ══════════════════════════════════════════════════════════════════
+  HOW TO USE THIS TEMPLATE
+  ══════════════════════════════════════════════════════════════════
+  1. Copy this file to:  writing/YYYY/your-post-slug.html
+     (use lowercase-hyphenated slugs, e.g. 2026/my-new-post.html)
+
+  2. Edit the five <!-- EDIT --> markers below:
+       • <title>          – browser tab + SEO title
+       • <meta description> – one-sentence summary (for search / sharing)
+       • <h1>             – article headline
+       • .post-meta       – human-readable date
+       • div.post-body    – your content (see examples inside)
+
+  3. Add the post to writing/index.html (instructions at the top of that file).
+
+  WRITING FEATURES AVAILABLE
+  ──────────────────────────
+  • Headings        <h2>Section</h2>  /  <h3>Subsection</h3>
+  • Bold            <strong>text</strong>
+  • Italic          <em>text</em>  or  <i>text</i>
+  • Inline code     <code>some_code()</code>
+  • Code block      <pre><code>multi\nline\ncode</code></pre>
+  • Block quote     <blockquote>quote text</blockquote>
+  • Footnote        see span.footnote example below
+  • Image           <figure><img src="img.png" alt=""><figcaption>caption</figcaption></figure>
+  • Horizontal rule <hr>
+  ══════════════════════════════════════════════════════════════════
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- EDIT title -->
+    <title>Post Title | Sushil Bohara</title>
+    <!-- EDIT description (shown in search results and social shares) -->
+    <meta name="description" content="One sentence describing this post.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- path depth: writing/YYYY/ → go up two levels to reach style.css -->
+    <link rel="stylesheet" href="../../style.css">
+    <!-- MathJax: write LaTeX directly in your post -->
+    <!-- Inline math:   \( x^2 + y^2 = z^2 \)          -->
+    <!-- Display math:  \[ \int_0^\infty e^{-x}\,dx \]  -->
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+    <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GEWRT4FSM8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GEWRT4FSM8');
+  </script>
+</head>
+  <body>
+
+    <!-- ── TOP NAV ── -->
+    <div class="topouter">
+      <div class="top">
+        <div class="links">
+          <nav>
+              <a href="../../">Home</a>
+              <a href="../../#papers">Papers</a>
+              <a href="../../writing/">Appendix</a>
+            </nav>
+        </div>
+        <div class="title">Sushil Bohara</div>
+        <div style="clear:both"></div>
+      </div>
+    </div>
+
+    <!-- ── LEFT NAV (visible on very wide screens) ── -->
+
+    <!-- ── ARTICLE ── -->
+    <div class="container">
+      <div class="outer">
+        <div class="boxed">
+          <div class="inner">
+
+            <div class="post-header">
+              <!-- EDIT headline -->
+              <h1>Your Post Title Goes Here</h1>
+              <!-- EDIT date -->
+              <div class="post-meta">April 2026</div>
+            </div>
+
+            <!-- ══════════════════════════════════════════════════
+                 EDIT  –  replace everything inside div.post-body
+                 with your actual content.
+                 Examples of every supported element are shown.
+            ══════════════════════════════════════════════════ -->
+            <div class="post-body fancy">
+
+              <p>
+                Start with an introductory paragraph that sets up
+                what the post is about and why it matters.
+                Keep it short — one or two sentences is enough
+                to hook the reader.
+              </p>
+
+              <h2>First Section Heading</h2>
+
+              <p>
+                Main body text goes here. You can link to
+                <a href="https://example.com">external sites</a> or to your
+                own <a href="/papers/">papers page</a>.
+              </p>
+
+              <p>
+                You can use <strong>bold</strong> for emphasis and
+                <em>italics</em> for titles or gentle stress.
+                Inline <code>code_snippets()</code> look like this.
+              </p>
+
+              <h3>A Subsection</h3>
+
+              <p>
+                Subsections break up longer posts.
+                Use <code>&lt;h2&gt;</code> for major sections and
+                <code>&lt;h3&gt;</code> for subsections within them.
+              </p>
+
+              <blockquote>
+                Block quotes are good for pulling out a key idea
+                or quoting an external source.
+              </blockquote>
+
+              <!-- Code block example -->
+              <pre><code>def hello(name):
+    print(f"Hello, {name}!")
+
+hello("world")</code></pre>
+
+              <!-- Image / figure example -->
+              <!--
+              <figure>
+                <img src="fig/my-image.png" alt="Description of image">
+                <figcaption>Figure 1: Caption goes here.</figcaption>
+              </figure>
+              -->
+
+              <h2>Second Section Heading</h2>
+
+              <p>
+                Continue writing here.
+                Footnotes work by hovering — try this one
+                <span class="footnote" id="fn1">
+                  <a href="#fn1">[1]</a>
+                  <span class="footnote_content">
+                    This is the footnote text. It appears on hover
+                    (desktop) or on tap (mobile). Keep it short.
+                  </span>
+                </span>
+                to see the effect.
+              </p>
+
+              <p>
+                End with a conclusion or a call to action.
+                Link back to related posts or papers if relevant.
+              </p>
+
+              <!-- ── post navigation ── -->
+              <div class="post-nav">
+                <!-- Update or remove these links -->
+                <span>&larr; <a href="../../writing/">All writing</a></span>
+                <span><a href="../../writing/">Next post &rarr;</a></span>
+              </div>
+
+            </div><!-- /.post-body -->
+          </div><!-- /.inner -->
+        </div><!-- /.boxed -->
+      </div><!-- /.outer -->
+      <div class="footer"></div>
+    </div><!-- /.container -->
+
+  </body>
+</html>

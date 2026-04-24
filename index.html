@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Sushil Bohara</title>
+    <meta name="description" content="Sushil Bohara is a masters student in Machine learning at MBZUAI.">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+    body {
+        background: #FEFEFE;
+        font-family: "EB Garamond", Georgia, serif;
+        text-rendering: optimizeLegibility;
+        line-height: 145%;
+        margin: 0px;
+    }
+
+    div.container {
+        padding-left: 1em;
+        padding-right: 1em;
+        color: #222;
+        padding-top: 1em;
+    }
+
+    div.outer {
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 1em;
+        max-width: 60em;
+    }
+
+    div.top {
+        max-width: 60em;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    div.topouter {
+        width: 100%;
+        min-height: 1.5em;
+        padding: 1em 0em 1em 0em;
+        z-index: 10;
+        background: #FFF;
+        border-bottom: 1px solid #D0D0D0;
+        box-shadow: 0 0 12px rgba(0,0,0,.1);
+        position: sticky;
+        top: 0;
+    }
+
+    div.links nav a {
+        font-variant: small-caps;
+    }
+
+    div.links a {
+        margin-right: .8em;
+    }
+
+    a.button {
+        display: inline-block;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        border: 1px solid #000;
+        border-radius: .25em;
+        padding: .2em .4em;
+        color: #fff;
+        background: #c0392b;
+        transition: .5s;
+    }
+
+    a.button:hover {
+        color: #fff;
+        background: #e74c3c;
+        transition: .5s;
+    }
+
+    div.title {
+        margin-left: .5em;
+        margin-right: 4em;
+        font-size: 150%;
+        float: left;
+        font-variant: small-caps;
+        letter-spacing: .15em;
+    }
+
+    div.links {
+        float: right;
+        font-size: 120%;
+        padding-right: 2em;
+    }
+
+    div.boxed {
+        border-radius: 5px;
+        background: #FFFFFF;
+        padding: 1em;
+        box-shadow: 0 0 12px rgba(0,0,0,0.05);
+        -moz-box-shadow: 0 0 12px rgba(0,0,0,0.05);
+        -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.05);
+    }
+
+    div.header {
+        border-bottom: #DDDDDD solid 2px;
+        padding-bottom: .5em;
+        padding-top: .2em;
+        line-height: 100%;
+        font-size: 2em;
+    }
+
+    span.header {
+        font-size: 1.5em;
+        line-height: 100%;
+    }
+
+    h2 {
+        font-size: 1.5em;
+        font-weight: normal;
+    }
+
+    p {
+        margin-top: 0px;
+        margin-bottom: .4em;
+    }
+
+    li {
+        padding-bottom: .2em;
+    }
+
+    div.inner {
+        padding-top: .5em;
+        width: 100%;
+        font-size: 12pt;
+        transform: rotate(0deg);
+        position: relative;
+    }
+
+    div.footer {
+        text-align: center;
+        padding-top: 3em;
+        font-size: 0.5em;
+    }
+
+    div.rightouter {
+        width: 16em;
+        display: inline;
+        float: right;
+    }
+
+    div.contact {
+        display: none;
+    }
+
+    div.rightinner {
+        padding-left: 10px;
+    }
+
+    div.rightelement {
+        background: #F8F8F8;
+        padding: 10px;
+        border-radius: 4px;
+        border-bottom: 1px solid #D0D0D0;
+        border-right: 1px solid #D0D0D0;
+        box-shadow: 0 0 6px rgba(0,0,0,0.1);
+        -moz-box-shadow: 0 0 6px rgba(0,0,0,0.1);
+        -webkit-box-shadow: 0 0 6px rgba(0,0,0,0.1);
+        width: 16em;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    div.rightelement img {
+        border-radius: 5%;
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0 auto 8px auto;
+    }
+
+    div.contact img {
+        border-radius: 5%;
+    }
+
+    label {
+        cursor: pointer;
+    }
+
+    a {
+        text-decoration: none;
+        color: #c0392b;
+    }
+
+    a:hover {
+        color: #e74c3c;
+    }
+
+    div.fancy a {
+        position: relative;
+    }
+
+    div.fancy a::before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #e74c3c;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    div.fancy a:hover::before {
+        transform: scaleX(.99);
+    }
+
+    span.footnote {
+        position: relative;
+        width: 0px;
+        margin-left: -.3em;
+    }
+
+    span.footnote > a:first-child {
+        vertical-align: super;
+        font-size: .7em;
+        line-height: 100%;
+        margin-left: 2px;
+    }
+
+    .footnote_content {
+        padding: .2em;
+        margin: 0px;
+        background: #ffffff;
+        opacity: 0.95;
+        border: #aaa 1px solid;
+        display: block;
+        position: fixed;
+        left: 0px;
+        margin-left: 1em;
+        margin-right: 1em;
+        max-width: calc(100% - 2em);
+        border-radius: 2px;
+        visibility: hidden;
+        transition: 0.2s 1s;
+        box-shadow: 0px 2px 10px 2px rgba(0,0,0,.25);
+        z-index: 100;
+    }
+
+    .footnote:hover .footnote_content {
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+    span.award {
+        background: #ffb;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+
+    span.me {
+        font-weight: bold;
+    }
+
+    hr {
+        display: block;
+        border-style: inset;
+        border-width: 1px;
+        margin-block-start: 0.5em;
+        margin-block-end: 0.5em;
+        margin-inline-start: 0.5em;
+        margin-inline-end: 0.5em;
+        border-top: solid 1px rgba(0,0,0,.2);
+        border-left: transparent;
+        border-right: transparent;
+    }
+
+
+    div.publication {
+        padding: .3em 0;
+    }
+
+    div.publication p {
+        margin: 0 0 .15em;
+    }
+
+    a.button {
+        display: inline-block;
+        border: 1px solid #000;
+        border-radius: .25em;
+        padding: .1em .4em;
+        color: #fff;
+        background: #c0392b;
+        font-size: .85em;
+        margin-right: .3em;
+        transition: .3s;
+        text-decoration: none;
+    }
+
+    a.button:hover {
+        background: #e74c3c;
+        color: #fff;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+
+    @media all and (max-width: 40em) {
+
+        div.boxed {
+            padding: .5em;
+        }
+
+        div.title {
+            font-size: 115%;
+            margin-right: 1em;
+            letter-spacing: .05em;
+        }
+
+        div.links {
+            font-size: 95%;
+            padding-right: .6em;
+        }
+
+        div.rightouter {
+            display: none;
+        }
+
+        div.contact {
+            display: block;
+            text-align: center;
+        }
+
+        .footnote_content {
+            transition: 0s;
+        }
+    }
+
+    div.writing-entry { margin-bottom: .5em; }
+    div.writing-entry .desc { color: #444; font-size: .95em; }
+    </style>
+    <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GEWRT4FSM8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GEWRT4FSM8');
+  </script>
+</head>
+  <body>
+
+    <!-- ── TOP NAV ── -->
+    <div class="topouter">
+      <div class="top">
+        <div class="links">
+          <nav>
+              <a href="#">Home</a>
+              <a href="#papers">Papers</a>
+              <a href="./writing/">Appendix</a>
+            </nav>
+        </div>
+        <div class="title">Sushil Bohara</div>
+        <div style="clear: both"></div>
+      </div>
+    </div>
+
+    <!-- ── LEFT NAV (visible on wide screens) ── -->
+
+    <!-- ── MAIN CONTENT ── -->
+    <div class="container">
+      <div class="outer">
+        <div class="boxed">
+          <div class="inner">
+
+            <!-- Profile card (desktop sidebar) -->
+            <div class="rightouter">
+              <div class="rightinner">
+                <div class="rightelement fancy">
+                  <!-- Replace profile.jpg with your actual photo -->
+                  <img src="profile.jpg" alt="Profile photo" >
+                  <div>
+                    Sushil Bohara<br>
+                    M.Sc. Student, MBZUAI<br>
+                    sushil.bohara [at] mbzuai [dot] ac [dot] ae
+                    <br>
+                    <a href="https://github.com/Sushil298">GitHub</a>
+                    |
+                    <a href="https://scholar.google.com/citations?user=gPa7hyIAAAAJ">Google Scholar</a>
+                  </div>
+                </div>
+                <br>
+              </div>
+            </div>
+
+            <!-- Profile card (mobile inline) -->
+            <div class="contact">
+              <img src="profile.jpg" alt="Profile photo" style="width:10em;height:auto;"><br>
+              Sushil Bohara<br>
+              M.Sc. Student, MBZUAI<br>
+              sushilbohara289 [at] gmail [dot] com<br>
+              <a href="https://github.com/Sushil298">GitHub</a>
+              |
+              <a href="https://scholar.google.com/citations?user=gPa7hyIAAAAJ">Google Scholar</a>
+              <br><br>
+            </div>
+
+            <!-- Bio -->
+            <p>
+              I am an M.Sc. student in <strong>Machine Learning</strong> at
+              <a href="https://mbzuai.ac.ae" target="_blank" rel="noopener">MBZUAI</a>
+              fortunate to be advised by
+              <a href="https://mbzuai.ac.ae/study/faculty/samuel-horvath/" target="_blank" rel="noopener">Dr. Samuel Horváth</a>,
+              with an expected graduation in May 2026.
+              Starting August 2026, I will continue at
+              <a href="https://mbzuai.ac.ae" target="_blank" rel="noopener">MBZUAI</a>
+              as a Ph.D. student in Machine Learning.
+            </p>
+
+            <p>
+              I completed my B.Sc. in Electrical Engineering at
+              <a href="https://nyuad.nyu.edu" target="_blank" rel="noopener">New York University Abu Dhabi (NYUAD)</a>.
+              I am originally from Nepal, where I received all of my pre-university education.
+            </p>
+
+            <p>
+              My research interests lie at the intersection of optimization and machine learning, 
+              particularly in developing efficient, scalable algorithms for training modern ML models.
+              In summer 2025, I was a visiting research intern at the
+              <a href="https://www.oist.jp/research/research-units/itps/members" target="_blank" rel="noopener">Information Theory, Probability, and Statistics Unit</a>
+              at the
+              <a href="https://www.oist.jp" target="_blank" rel="noopener">Okinawa Institute of Science and Technology (OIST)</a>,
+              supervised by
+              <a href="https://www.amedeorobertoesposito.com" target="_blank" rel="noopener">Dr. Amedeo Roberto Esposito</a>.
+            </p>
+
+            <p>
+              I also enjoy teaching. I have served as a teaching assistant for the following courses:
+            </p>
+            <ul>
+              <li style="padding-bottom:.3em">
+                <strong>DS702 Big Data Processing</strong> (Master's level) — MBZUAI, Spring 2026
+              </li>
+              <li style="padding-bottom:.3em">
+                <strong>ML701 Machine Learning</strong> (Master's level) — MBZUAI, Fall 2025
+              </li>
+              <li style="padding-bottom:.3em">
+                <strong>ENGR-UH 2510 Object Oriented Programming</strong> in C++ (Bachelor's level) — NYUAD, Fall 2023
+              </li>
+            </ul>
+
+            <p>
+              I plan to write blogs in my free time under  <a href="./writing/">appendix</a> section. 
+            </p>
+
+            <div style="clear:both"></div>
+
+            <!-- ── PAPERS ── -->
+            <div id="papers" style="margin-top:.8em">
+              <p><span class="header">Papers</span></p>
+
+              <div class="writing-entry">
+                [1] <a href="https://arxiv.org/abs/2509.25782" target="_blank" rel="noopener">Loss-Transformation Invariance in the Damped Newton Method.</a><br>
+                <span class="desc">Shestakov A, <strong>Bohara S</strong>, Horváth S, Takáč M, Hanzely S.</span>
+              </div>
+
+              <div class="writing-entry">
+                [2] <a href="https://arxiv.org/abs/2510.15548" target="_blank" rel="noopener">Geometric Convergence Analysis of Variational Inference via Bregman Divergences.</a><br>
+                <span class="desc"><strong>Bohara S</strong>, Esposito AR.</span>
+              </div>
+
+              <div class="writing-entry">
+                [3] <a href="https://ieeexplore.ieee.org/abstract/document/10650715" target="_blank" rel="noopener">CuriousRL: Curiosity-driven Reinforcement Learning for Adaptive Locomotion in Quadruped Robots.</a><br>
+                <span class="desc"><strong>Bohara S</strong>, Hanif MA, Shafique M.</span>
+              </div>
+
+            </div><!-- /#papers -->
+
+          </div><!-- /.inner -->
+        </div><!-- /.boxed -->
+      </div><!-- /.outer -->
+
+      <div class="footer">
+        Design inspired from <a href="https://nicholas.carlini.com" target="_blank" rel="noopener">here</a>.
+      </div>
+    </div><!-- /.container -->
+
+  </body>
+</html>
