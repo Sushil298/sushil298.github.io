@@ -52,15 +52,15 @@
               <p>
                 In gradient descent, we define a loss function, compute its gradient, and move in the negative gradient direction.
                 Each parameter has a derivative, so each parameter gets updated.
-                This picture is useful, but it also leaves important question.
+                This picture is useful, but it also leaves an important question.
               </p>
 
               <p>The questions we can ask sound like this:</p>
 
               <blockquote>
-                If the gradient already tells us how every parameter changes, then why we need to talk about matrix norms, singular values, and condition numbers? Which matrix should we study studying?
-                The weights? The loss? The input? And if, during SGD, eventhough we do not multiply the
-                gradient matrix by some arbitrary vector, then why do we care things like
+                If the gradient already tells us how every parameter changes, then why do we need to talk about matrix norms, singular values, and condition numbers? Which matrix should we study?
+                The weights? The loss? The input? And if, during SGD, even though we do not multiply the
+                gradient matrix by some arbitrary vector, then why do we care about things like
                 "this matrix acts strongly in some directions and weakly in others"?
               </blockquote>
 
@@ -180,7 +180,7 @@
               <p>At this point, a natural thought appears:</p>
 
               <blockquote>
-                We can already see the entries of the gradient. They tell me exactly how each parameter changes.
+                We can already see the entries of the gradient. They tell us exactly how each parameter changes.
                 So why do we need anything more?
               </blockquote>
 
